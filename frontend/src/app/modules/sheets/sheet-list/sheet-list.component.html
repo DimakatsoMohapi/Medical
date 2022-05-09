@@ -1,0 +1,82 @@
+<div class="container">
+  <mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <span>My Sheets</span>
+    <span class="fill-remaining-space"></span>
+  </mat-toolbar>
+  <div class="search-div">
+    <button *ngIf="userRole=='patient'"  mat-raised-button (click)="onCreate()">
+      <mat-icon>add</mat-icon>Create
+    </button>
+  
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <ng-container matColumnDef="bloodpressure">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Blood Pressure </th>
+      <td mat-cell *matCellDef="let element"> {{element.bloodpressure}} </td>
+    </ng-container>
+     <ng-container matColumnDef="pulse">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> pulse </th>
+      <td mat-cell *matCellDef="let element"> {{element.pulse}} </td>
+    </ng-container>
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+    <ng-container matColumnDef="height">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> height </th>
+      <td mat-cell *matCellDef="let element"> {{element.height}} </td>
+    </ng-container>
+     <ng-container matColumnDef="symptoms">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> symptoms </th>
+      <td mat-cell *matCellDef="let element"> {{element.symptoms}} </td>
+    </ng-container>
+    <ng-container>
+      
+    </ng-container>
+    <ng-container  matColumnDef="patientName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Patient Name </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.patientName}}  
+        <ul>
+          <li> birthdate: {{formatToDate(element.patientDetails.birthdate)}}</li>  
+          <li>birth place: {{element.patientDetails.birthplace}}</li>
+          <li>phone: {{element.patientDetails.phone}}</li>
+                 
+         </ul>
+      </td>
+    </ng-container>
+    <ng-container   matColumnDef="doctorName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.doctorName}} </td>
+    </ng-container>
+   
+    <ng-container matColumnDef="entrydate">
+      <th mat-header-cell *matHeaderCellDef> entry date </th>
+      <td mat-cell *matCellDef="let element"> {{formatToDate(element.entrydate)}} </td>
+    </ng-container>
+     
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        Loading data...
+      </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        No data.
+      </mat-footer-cell>
+    </ng-container>
+   
+    <button *ngIf="userRole=='doctor'"  mat-icon-button color="warn" (click)="onDelete(row._id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></mat-footer-row>
+
+  </table>
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+  </mat-paginator>
+
+</div>

@@ -1,0 +1,15 @@
+<div class="main-div">
+    <mat-card class="card">
+    <mat-spinner diameter="40" color="accent" *ngIf="profile == null"></mat-spinner>
+        <mat-card-header *ngIf="profile !=null" >
+            <mat-card-title>Name: {{profile.name}}</mat-card-title>
+            <mat-card-subtitle>Birth Date: {{formatToDate(profile.birthdate)}}</mat-card-subtitle>
+            <mat-card-subtitle>Birth Place: {{profile.birthplace}}</mat-card-subtitle>
+            <mat-card-subtitle>Phone: {{profile.phone}}</mat-card-subtitle>
+            <mat-card-subtitle>Email: {{profile.email}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="profile !=null" >
+            <p>Username: {{profile.email}}</p>
+        </mat-card-content>
+    </mat-card>
+</div>

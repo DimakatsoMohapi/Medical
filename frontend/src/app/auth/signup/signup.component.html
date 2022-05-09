@@ -1,0 +1,47 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+
+    <form class="x-form"  (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+
+      <mat-card-content>
+      <mat-form-field class="x-full-width">
+        <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
+        <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="x-full-width">
+        <input matInput name="name" ngModel type="text" placeholder="Full Name" #nameInput="ngModel" required >
+        <mat-error *ngIf="nameInput.invalid">Please enter your name.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Enter Your birthdate</mat-label>
+        <input matInput name="birthdate" ngModel type="text" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker ></mat-datepicker>
+      </mat-form-field>
+ 
+      <mat-form-field class="x-full-width">
+        <input matInput name="birthplace" ngModel type="text" placeholder="enter birthplace" #nameInput="ngModel" required >
+        <mat-error *ngIf="nameInput.invalid">Please enter your birthplace.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="x-full-width">
+        <input matInput name="phone" ngModel type="text" placeholder="enter phone" #nameInput="ngModel" required >
+        <mat-error *ngIf="nameInput.invalid">Please enter your phone.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="x-full-width">
+        <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+        <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+      </mat-form-field>
+
+      </mat-card-content>
+      <button mat-stroked-button color="accent" type="submit" class="btn-block" *ngIf="!isLoading">Register</button>
+
+    </form>
+  </mat-card>
+</div>

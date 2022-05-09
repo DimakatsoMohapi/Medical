@@ -1,0 +1,76 @@
+<div class="container">
+  <mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <span>Add new sheet</span>
+    <span class="fill-remaining-space"></span>
+    <button mat-button class="close-icon" >
+      <mat-icon routerLink="/sheets">close</mat-icon>
+    </button>
+  </mat-toolbar>
+</div>
+<div *ngIf="creating">please wait while we add record.</div>
+<form *ngIf="!creating" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+
+    <mat-grid-list cols="2" rowHeight="500px" >
+      <mat-grid-tile>
+        <div class="controles-container">
+          <div [hidden]="submitted" style="width: auto;">
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <mat-label>Blood Pressure</mat-label>
+                <input matInput formControlName="bloodpressure" type="number" class="form-control" id="bloodpressure" required
+                  [(ngModel)]="sheet.bloodpressure" name="bloodpressure">
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <mat-label>Pulse</mat-label>
+                <input matInput id="pulse" type="number" placeholder="pulse" formControlName="pulse" required [(ngModel)]="sheet.pulse" name="pulse">
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <mat-label>Weight</mat-label>
+                <input matInput formControlName="weight" type="number" class="form-control" id="weight" required
+                  [(ngModel)]="sheet.weight" name="weight">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <mat-label>Height</mat-label>
+                <input matInput id="height" type="number" placeholder="your weight" formControlName="height" required [(ngModel)]="sheet.height" name="height">
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <mat-form-field class="example-full-width">
+                <mat-label>Symptoms</mat-label>
+                <input matInput id="symptoms"   placeholder="any Symptoms you had!" formControlName="symptoms" required [(ngModel)]="sheet.symptoms" name="symptoms">
+              </mat-form-field>
+            </div>
+          <div class="form-group" >
+            <mat-form-field appearance="fill" >
+             <mat-label>Doctors</mat-label>
+              <mat-select  [(ngModel)]="sheet.doctorId" name="doctorName" [ngModelOptions]="{standalone: true}">
+                <mat-option *ngFor="let doctor of doctors" [value]="doctor._id" >
+                  {{doctor.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          </div>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="controles-container-second">
+
+          <div class="button-row">
+            <button mat-raised-button [disabled]="!registerForm.valid" color="primary" type="submit">Submit</button>
+            <button mat-raised-button color="warn" type="reset">Clear</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</form>

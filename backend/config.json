@@ -1,0 +1,6 @@
+{
+    "secret": "Medical project 2022",
+    "origin": "http://localhost:4200",
+    
+    "db" :"mongodb+srv://Admin:Admin@medical.3ykw0.mongodb.net/Medical?retryWrites=true&w=majority"
+}

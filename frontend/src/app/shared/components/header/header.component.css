@@ -1,0 +1,33 @@
+a {
+  text-decoration: none;
+  color: black
+}
+
+a:hover, a:active{
+  color: white;
+}
+
+.navigation-items{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+mat-toolbar{
+  border-radius: 3px;
+  background-color: lightblue !important;
+}
+
+@media(max-width: 959px){
+  mat-toolbar{
+      border-radius: 0px;
+      background-color: lightblue !important;
+  }
+}
+
+.mat-button .large {
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  font-size: 16px;
+}
